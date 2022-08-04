@@ -8,6 +8,7 @@
     <button onclick="btn1_clicked()">test1</button>
     <SCRIPT LAUNGUAGE=JAVASCRIPT> 
     function btn1_clicked() {
+        window.webkit.messageHandlers.jsMessageHandler.postMessage("clicked button") 
         alert("clicked button") 
     }
     </SCRIPT>
