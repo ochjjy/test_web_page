@@ -4,24 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>NiceInfoBox NG Test Site</title>
+    <title>Message Test Site</title>
     <link rel="stylesheet" href="css/style.css">
 </html>
 <body>
-    <script>
-        let base_url = "https://ochjjy.github.io/test_web_page/";
-        window.addEventListener('message',function(event) {
-            if(event.origin !== 'base_url') {
-                alert('Invalid origin: ' + event.origin);
-                return;
-            }
-            alert('received response:  ',event.data);
-        },false);
-    </script>
-    
     <div class="container">
         <div class="header">
-            <h1>NiceInfoBox NG Test Site</h1>
+            <h1>Message Test Site</h1>
         </div>
         <div class="content">
             <div class="main">
@@ -53,20 +42,19 @@
     <!-- javascript function btn1_click on button1 click-->
     <script>
         function btn1_click() {
-            // show input1 value in alert
-            alert(document.getElementById("svc_sample_input_json").value);
+            alert("test message");
+            //show input1 value in alert
+            var destUrl = "https://ochjjy.github.io/test_web_page/index.html";
+            //send post message to destUrl
+            window.postMessage({
+                "destUrl": destUrl,
+                "data": "test message : "+currentTime().strftime("%Y-%m-%d %H:%M:%S")
+            }, "*");
+            alert("post message to "+destUrl);
         }
 
        function svc_sample_input_onload() {
-            document.getElementById("svc_sample_input_json").value = "intial value";
-            alert('loaded');
-            // var reader = new FileReader();
             
-            // reader.addEventListener('load', function (e) {
-            //     input.textContent = e.target.result;
-            // });
-            
-            // reader.readAsBinaryString(myFile);
         }
 
         function receiveMessage(event){
