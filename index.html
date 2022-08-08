@@ -1,18 +1,80 @@
-
-<html>
-    <head><meta charset="utf-8"></head>
-    <body>
-        <h1>테스트 페이지!</h1>
-
-
-    <button onclick="btn1_clicked()">test1</button>
-    <SCRIPT LAUNGUAGE=JAVASCRIPT> 
-    function btn1_clicked() {
-        alert("clicked button") 
-        window.webkit.messageHandlers.jsMessageHandler.postMessage("clicked button") 
-    }
-    </SCRIPT>
-
-
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NiceInfoBox NG Test Site</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        let base_url = "file:///Users/michaelauk/work/test_web_page/index.html";
+        window.addEventListener('message',function(event) {
+            if(event.origin !== 'base_url') {
+                alert('Invalid origin: ' + event.origin);
+                return;
+            }
+            alert('received response:  ',event.data);
+        },false);
+    </script>
 </html>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>NiceInfoBox NG Test Site</h1>
+        </div>
+        <div class="content">
+            <div class="main">
+                <h2>Service Sample</h2>
+                <p>Service Input json</p>
+                <!-- text input with style -->
+                <div class="nice-input">
+                    <!-- rich text editor -->
+                    <textarea id="svc_sample_input_json" onload="svc_sample_input_onload();" rows="10" cols="50"></textarea>
+                </div>
+                <!-- make button1 with btn1_click() -->
+                <button id="btn1" onclick="btn1_click()">Button 1</button>
+            </div>
+            <div class="sidebar">
+                <h2>Sidebar</h2>
+                <p>
+                    This is the sidebar content.
+                </p>
+            </div>
+        </div>
+        <div class="footer">
+            <h2>Footer</h2>
+            <p>
+                This is the footer content.
+            </p>
+        </div>
+    </div>
+
+    <!-- javascript function btn1_click on button1 click-->
+    <script>
+        function btn1_click() {
+            // show input1 value in alert
+            alert(document.getElementById("svc_sample_input_json").value);
+        }
+
+       function svc_sample_input_onload() {
+            document.getElementById("svc_sample_input_json").value = "intial value";
+            alert('loaded');
+            // var reader = new FileReader();
+            
+            // reader.addEventListener('load', function (e) {
+            //     input.textContent = e.target.result;
+            // });
+            
+            // reader.readAsBinaryString(myFile);
+        }
+
+        let base_url = "file:///Users/michaelauk/work/test_web_page/index.html";
+        function receiveMessage(event){
+            if (event.origin !== base_url)
+                console.log("origin url : " + event.origin);
+                return;
+
+            console.log('received message:  ',event.data);
+            event.source.postMessage('this is response.',event.origin);
+        }
+    </script>
