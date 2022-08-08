@@ -9,8 +9,18 @@
 </head>
 <body>
     <script>
-        let base_url = "https://ochjjy.github.io/test_web_page/index.html";
-        window.addEventListener('message',function(event) {
+        let base_url = "https://cosmic-chaja-99ab5b.netlify.app/index.html";
+        // window.addEventListener('message',function(event) {
+        //     if(event.origin !== 'base_url') {
+        //         document.getElementById("svc_sample_input_json").value = 'Invalid origin: ' + event.origin;
+        //         alert('Invalid origin: ' + event.origin);
+        //         return;
+        //     }
+        //     document.getElementById("svc_sample_input_json").value = 'received response:  ',event.data;
+        //     alert('received response:  ',event.data);
+        // },false);
+        exports.handler = async function (event, context) {
+        // your server-side functionality
             if(event.origin !== 'base_url') {
                 document.getElementById("svc_sample_input_json").value = 'Invalid origin: ' + event.origin;
                 alert('Invalid origin: ' + event.origin);
@@ -18,7 +28,8 @@
             }
             document.getElementById("svc_sample_input_json").value = 'received response:  ',event.data;
             alert('received response:  ',event.data);
-        },false);
+
+        };
     </script>
 
     <div class="container">

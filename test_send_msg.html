@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Message Test Site</title>
     <link rel="stylesheet" href="css/style.css">
-</html>
 <body>
     <div class="container">
         <div class="header">
@@ -43,14 +42,9 @@
     <script>
         function btn1_click() {
             alert("test message");
-            //show input1 value in alert
-            var destUrl = "https://ochjjy.github.io/test_web_page/index.html";
-            //send post message to destUrl
-            window.postMessage({
-                "destUrl": destUrl,
-                "data": "test message : "+currentTime().strftime("%Y-%m-%d %H:%M:%S")
-            }, "*");
-            alert("post message to "+destUrl);
+            // set text area value to "test message"
+            document.getElementById("svc_sample_input_json").value = "test message";
+            //alert("post message to "+destUrl);
         }
 
        function svc_sample_input_onload() {
@@ -66,3 +60,5 @@
             event.source.postMessage('this is response.',event.origin);
         }
     </script>
+</body>
+</html>
