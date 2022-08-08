@@ -9,7 +9,7 @@
 </html>
 <body>
     <script>
-        let base_url = "https://ochjjy.github.io/test_web_page/";
+        let base_url = "https://ochjjy.github.io/test_web_page/index.html";
         window.addEventListener('message',function(event) {
             if(event.origin !== 'base_url') {
                 alert('Invalid origin: ' + event.origin);
@@ -18,7 +18,7 @@
             alert('received response:  ',event.data);
         },false);
     </script>
-    
+
     <div class="container">
         <div class="header">
             <h1>NiceInfoBox NG Test Site</h1>
