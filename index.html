@@ -6,90 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NiceInfoBox NG Test Site</title>
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="./hyunny.js"></script>
+    <!-- run show_test_result() when page is loaded -->
+    <script>
+        window.onload = function() {
+            show_test_result('result_text_area');
+        }
+    </script>
 </head>
 <body>
-    <script>
-        let base_url = "https://cosmic-chaja-99ab5b.netlify.app/index.html";
-        // window.addEventListener('message',function(event) {
-        //     if(event.origin !== 'base_url') {
-        //         document.getElementById("svc_sample_input_json").value = 'Invalid origin: ' + event.origin;
-        //         alert('Invalid origin: ' + event.origin);
-        //         return;
-        //     }
-        //     document.getElementById("svc_sample_input_json").value = 'received response:  ',event.data;
-        //     alert('received response:  ',event.data);
-        // },false);
-        exports.handler = async function (event, context) {
-        // your server-side functionality
-            if(event.origin !== 'base_url') {
-                document.getElementById("svc_sample_input_json").value = 'Invalid origin: ' + event.origin;
-                alert('Invalid origin: ' + event.origin);
-                return;
-            }
-            document.getElementById("svc_sample_input_json").value = 'received response:  ',event.data;
-            alert('received response:  ',event.data);
-
-        };
-    </script>
-
     <div class="container">
         <div class="header">
-            <h1>NiceInfoBox NG Test Site</h1>
+            <h1>NiceInfoBox NG Test Site  0.0.5</h1>
         </div>
+        
         <div class="content">
             <div class="main">
-                <h2>Service Sample</h2>
-                <p>Service Input json</p>
+                <h2>Web Debugging Sample</h2>
+                <p>Test Result json</p>
                 <!-- text input with style -->
+                <!-- make button1 with btn1_click() -->
+                <button id="btn1" onclick="clear_test_result('result_text_area')">Clear</button>
+
                 <div class="nice-input">
                     <!-- rich text editor -->
-                    <textarea id="svc_sample_input_json" onload="svc_sample_input_onload();" rows="10" cols="50"></textarea>
+                    <textarea id="result_text_area" rows="50" cols="80"></textarea>
                 </div>
-                <!-- make button1 with btn1_click() -->
-                <button id="btn1" onclick="btn1_click()">Button 1</button>
-            </div>
-            <div class="sidebar">
-                <h2>Sidebar</h2>
-                <p>
-                    This is the sidebar content.
-                </p>
             </div>
         </div>
-        <div class="footer">
-            <h2>Footer</h2>
-            <p>
-                This is the footer content.
-            </p>
-        </div>
+        
     </div>
-
-    <!-- javascript function btn1_click on button1 click-->
-    <script>
-        function btn1_click() {
-            // show input1 value in alert
-            alert(document.getElementById("svc_sample_input_json").value);
-        }
-
-       function svc_sample_input_onload() {
-            document.getElementById("svc_sample_input_json").value = "intial value";
-            alert('loaded');
-            // var reader = new FileReader();
-            
-            // reader.addEventListener('load', function (e) {
-            //     input.textContent = e.target.result;
-            // });
-            
-            // reader.readAsBinaryString(myFile);
-        }
-
-        function receiveMessage(event){
-            if (event.origin !== base_url)
-                console.log("origin url : " + event.origin);
-                return;
-
-            console.log('received message:  ',event.data);
-            event.source.postMessage('this is response.',event.origin);
-        }
-    </script>
 </body>
 </html>
